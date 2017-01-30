@@ -1,0 +1,12 @@
+Listening on 3000
+Client :: login
+{ username: 'root',
+  password: 'admin12',
+  host: '10.0.213.236',
+  port: 22,
+  path: '/var/log/tat/toluna.log',
+  error: null,
+  loading: true,
+  parseExp: 'LogLevel\\]([\\s\\S]*)\\+\\+\\+Context' }
+Client :: ready
+Client :: onTail

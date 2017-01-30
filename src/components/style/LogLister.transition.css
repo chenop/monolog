@@ -1,0 +1,30 @@
+/*.logList-enter {
+  opacity: 0.01;
+  transform: scale(0.7);
+}
+
+.logList-enter.logList-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 250ms ease-out;
+}
+
+.logList-leave {
+  opacity: 1;
+}
+
+.logList-leave.logList-leave-active {
+  opacity: 0.01;
+  transition: all 250ms ease-out;
+}
+
+.logList-appear {
+  opacity: 0.01;
+  transform: scale(0.7);
+}
+
+.logList-appear.logList-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all .25s  ease-out;
+}*/

@@ -1,0 +1,2 @@
+2017-01-26 16:22:51 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\ofir.oron\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "D:\polls\iis_files\tqs\monolog\server.js" -l "Monolog server" -g 0.25 -w 1 -r 3 -a n
+2017-01-26 16:22:51 - Started 2984
