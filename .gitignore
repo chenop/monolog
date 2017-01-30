@@ -13,3 +13,4 @@ coverage
 .env
 npm-debug.log
 npm-debug.log.*
+daemon
