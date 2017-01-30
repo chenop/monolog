@@ -25,8 +25,15 @@ class MoreSettings extends Component {
             <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
               <Tab eventKey={1} title={<span><Glyphicon glyph="filter" /> Filters</span>}>
                   <Col>
-
-                    <br/>
+                    <p className="text-muted" style={{padding:10}}>
+                      You can add custom filters using regular expressions. Each filter's action can be toggled
+                      as either log entry must the pass RegEx test <i className="text-info">(MUST CONTAIN)</i>&nbsp;
+                      or must not pass the RegEx test <i className="text-info">(MUST NOT CONTAIN)</i>.
+                      In addition, each filter added can be toggled active/disabled or be removed entirely from the list.
+                      Any filter you add will be&nbsp;
+                      <Label bsStyle="info"><Glyphicon glyph="filter" /> #1 highlighted</Label>&nbsp;
+                       in the log entries UI.
+                    </p>
                     <FormGroup>
                       <InputGroup>
                         <FormControl
@@ -106,10 +113,14 @@ class MoreSettings extends Component {
                   </Col>
               </Tab>
               <Tab eventKey={2} title={<span><Glyphicon glyph="search" /> Display</span>}>
-                <br/>
-                <label>
-                  <input type="checkbox" checked={hideKnown} onChange={() => toggleHideKnown()} />  Hide known issues from the list
-                </label>
+
+                <p className="text-muted" style={{padding:10}}>
+                  Hide known issue from the log UI. Known issues are defined in the app conifguration.
+                  <label>
+                    <input type="checkbox" checked={hideKnown} onChange={() => toggleHideKnown()} />  Hide known issues
+                  </label>
+                </p>
+
 
               </Tab>
             </Tabs>

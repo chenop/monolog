@@ -18,7 +18,7 @@ import {
   OverlayTrigger,
   Tooltip
 } from 'react-bootstrap';
-import logo from '../assets/images/tqs_logo2016.png';
+//import logo from '../assets/images/tqs_logo2016.png';
 
 
 class Toolbar extends Component {
@@ -53,27 +53,25 @@ class Toolbar extends Component {
       <Navbar fixedTop inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <img alt="MonoLog" src={logo} />
+            mono<strong>Log</strong>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav onSelect={(eventKey, evt)=>{
             //LogLevel
-            let _machine = machine;
-            if (eventKey === 'InformationLogLevel' && machine === 0) {
-              _machine = 1;
-            }
-
             if (logLevel.indexOf(eventKey) > -1) this.props.removeLogLevel(eventKey);
             else
               this.props.addLogLevel(eventKey);
           }}>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip_dropdown_logLevel">Add/remove log levels filters</Tooltip>}>
             <NavDropdown title={<span><Glyphicon glyph="stats" /> LogLevel ({logLevel.length})</span>} id="basic-nav-dropdown">
               {
                 errorLevels.map((errorLevel) =>
                 <MenuItem
-                  disabled={errorLevel.disabled || (errorLevel.key === 'InformationLogLevel' && !machine)}
+                  disabled={errorLevel.disabled}
                   key={errorLevel.key}
                   eventKey={errorLevel.key}>
 
@@ -86,18 +84,19 @@ class Toolbar extends Component {
                 )
               }
             </NavDropdown>
+          </OverlayTrigger>
+
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
             //Machine
-            let _level = logLevel;
-            if (eventKey === 0 && logLevel === 'InformationLogLevel') {
-              _level = 'WarningLogLevel';
-            }
             if (eventKey === 9 && !this.state.customMachine) return;
             this.props.changeMachine(eventKey, eventKey === 9 ? this.state.customMachine : null);
           }}>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip_dropdown_machine">Filter by preset machine name.<br/>You can also apply custom filter using RegEx</Tooltip>}>
             <NavDropdown title={<span><Glyphicon glyph="cd" /> {`Machine: ${this.determineMachineName(machines, machine)}`}</span>} id="basic-nav-dropdown">
-              {machines.map((machine) => <MenuItem disabled={logLevel === 'InformationLogLevel' && machine.key === 0} key={machine.key} eventKey={machine.key}>{machine.label}</MenuItem>)}
+              {machines.map((machine) => <MenuItem key={machine.key} eventKey={machine.key}>{machine.label}</MenuItem>)}
               <MenuItem key={9} eventKey={9}>
                 <FormGroup>
                   <InputGroup>
@@ -120,13 +119,18 @@ class Toolbar extends Component {
                 </FormGroup>
               </MenuItem>
             </NavDropdown>
+          </OverlayTrigger>
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
             this.props.changeBufferSize(eventKey);
           }}>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip_dropdown_buffer">Select maxium log entries allowed in buffer</Tooltip>}>
             <NavDropdown title={<span><Glyphicon glyph="list-alt" /> {`Buffer: ${bufferSize}`}</span>} id="basic-nav-dropdown">
               {bufferSizes.map((size) => <MenuItem key={size.key} disabled={size.disabled} eventKey={size.key}>{size.label}</MenuItem>)}
             </NavDropdown>
+          </OverlayTrigger>
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
             this.props.toggleMoreSettings();
@@ -136,7 +140,9 @@ class Toolbar extends Component {
           <Nav pullRight>
             <Navbar.Form>
               <FormGroup bsSize="small">
-
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={<Tooltip id="tooltip_button_logplaypause">Toggle monitor state ACTIVE/PAUSED</Tooltip>}>
                 <Button
                   bsStyle={monitorState > 0 ? 'success' : 'danger'}
                   bsSize="xs"
@@ -146,7 +152,9 @@ class Toolbar extends Component {
                   <Glyphicon glyph={monitorState > 0 ? 'play' : 'pause'} />&nbsp;
                   {monitorStateModes[monitorState]}
 
-                </Button>&nbsp;
+                </Button>
+              </OverlayTrigger>
+              &nbsp;
               </FormGroup>
               <FormGroup bsSize="small">
                 {
@@ -167,11 +175,15 @@ class Toolbar extends Component {
                 }
               </FormGroup>
               <FormGroup bsSize="small">
-                <FormControl type="text" placeholder="Filter log entries"
-                  onChange={(e)=>{
-                    this.props.changeFilterExpression(e.target.value);
-                  }}
-                />
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={<Tooltip id="tooltip_input_openfilter">Filter current log entries. <br/>This is an additonal filter over the others</Tooltip>}>
+                  <FormControl type="text" placeholder="Filter log entries"
+                    onChange={(e)=>{
+                      this.props.changeFilterExpression(e.target.value);
+                    }}
+                  />
+              </OverlayTrigger>
               </FormGroup>
             </Navbar.Form>
           </Nav>

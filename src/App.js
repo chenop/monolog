@@ -57,6 +57,10 @@ class App extends Component {
     this.socket.on(`${AppConfig.events.ON_LOGIN_ERROR}_${sessionId}`, (data) => {
       this.props.handleErrorMessage(data);
     });
+    this.socket.on(AppConfig.events.ON_CONNECT_ERROR, (err) => {
+        this.props.handleErrorMessage({level:'connect-error' });
+        this.socket.close();
+      });
   }
 
   updateLoggerState(logLevel, message) {

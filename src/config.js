@@ -4,24 +4,19 @@ const config = {
     1: 'ACTIVE'
   },
   errorLevels: [
-    //TODO: check if it is better to add log levels entries or jsut append to existing keys
     {key: 'CriticalLogLevel', label: 'TQS Critical Error', type:'CriticalLogLevel',  color: 'rgba(255,0,0,0.9)'},
     {key: 'ErrorLogLevel', label: 'TQS Error', type:'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
     {key: 'WarningLogLevel', label: 'TQS Warning', type:'WarningLogLevel', color: 'rgba(255,190,0,0.4)'},
     {key: 'InformationLogLevel', label: 'TQS Information', type:'InformationLogLevel', color: 'rgba(0,183,255,0.4)'},
 
     {key: 'ERROR', label: 'TA ERROR', type: 'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
-    {key: 'INFO', label: 'TA INFO', type: 'InformationLogLevel', color: 'rgba(0,183,255,0.4)'},
-
-    {key: 0, label: 'All', disabled: true},
+    {key: 'INFO', label: 'TA INFO', type: 'InformationLogLevel', color: 'rgba(0,183,255,0.4)'}
   ],
   machines: [
-    //TODO: It is possible to add additional machine names
     {key: 0, label: 'Any'},
     {key: 1, label: 'WILTQSIIS 1'},
     {key: 2, label: 'WILTQSIIS 2'},
-    {key: 3, label: 'WILTQSIIS 3'},
-    //{key: 9, label: 'Custom'}
+    {key: 3, label: 'WILTQSIIS 3'}
   ],
   bufferSizes: [
     { key: 50, label: '50'},
@@ -30,8 +25,8 @@ const config = {
     { key: Infinity, label: 'Unlimited', disabled: true}
   ],
   log: {
-    PROTOCOL: 'http', //'https',
-    HOST: location.hostname,//'localhost', //'us.dev.tolunahaifa.com', //'monologapp1.herokuapp.com',//on dev: localhost
+    PROTOCOL: 'http',
+    HOST: location.hostname,
     PORT: 3000,
     parseExpression: 'LogLevel\\]([\\s\\S]*)\\+\\+\\+Context',
     entries: {
@@ -58,6 +53,14 @@ const config = {
     ]
   },
   serverErrors: {
+    'connect-error': {
+      message: {
+        title: 'Server connection error',
+        text: `<strong>xhr-poll-error</strong><br/>
+        It seems that connection to the server was interrupted! <br/>
+        Please try logging in again or talk to your system admin.`
+      }
+    },
     'client-socket': {
       message: {
         title: 'Socket connection error',
@@ -81,7 +84,8 @@ const config = {
     ON_LOGENTRY: 'log',
     ON_ERROR: 'log_error',
     ON_LOGIN_ERROR: 'login_error',
-    ON_LOG_READY: 'log_ready'
+    ON_LOG_READY: 'log_ready',
+    ON_CONNECT_ERROR: 'connect_error'
   }
 }
 
