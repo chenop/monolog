@@ -4,13 +4,15 @@ const config = {
     1: 'ACTIVE'
   },
   errorLevels: [
-    {key: 'CriticalLogLevel', label: 'TQS Critical Error', type:'CriticalLogLevel',  color: 'rgba(255,0,0,0.9)'},
-    {key: 'ErrorLogLevel', label: 'TQS Error', type:'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
-    {key: 'WarningLogLevel', label: 'TQS Warning', type:'WarningLogLevel', color: 'rgba(255,190,0,0.4)'},
-    {key: 'InformationLogLevel', label: 'TQS Information', type:'InformationLogLevel', color: 'rgba(0,183,255,0.4)'},
+    {key: 'CriticalLogLevel', label: 'CriticalLogLevel', type:'CriticalLogLevel',  color: 'rgba(255,0,0,0.9)'},
+    {key: 'ErrorLogLevel', label: 'ErrorLogLevel', type:'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
+    {key: 'WarningLogLevel', label: 'WarningLogLevel', type:'WarningLogLevel', color: 'rgba(255,190,0,0.4)'},
+    {key: 'InformationLogLevel', label: 'InformationLogLevel', type:'InformationLogLevel', color: 'rgba(0,183,255,0.4)'},
 
-    {key: 'ERROR', label: 'TA ERROR', type: 'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
-    {key: 'INFO', label: 'TA INFO', type: 'InformationLogLevel', color: 'rgba(0,183,255,0.4)'}
+    {key: 'FATAL', label: 'FATAL', type: 'CriticalLogLevel', color: 'rgba(255,0,0,0.9)'},
+    {key: 'ERROR', label: 'ERROR', type: 'ErrorLogLevel', color: 'rgba(255,0,0,0.4)'},
+    {key: 'INFO', label: 'INFO', type: 'InformationLogLevel', color: 'rgba(0,183,255,0.4)'},
+    {key: 'WARN', label: 'WARN', type: 'WarningLogLevel', color: 'rgba(255,190,0,0.4)'}
   ],
   machines: [
     {key: 0, label: 'Any'},
