@@ -64,10 +64,15 @@ class Toolbar extends Component {
             else
               this.props.addLogLevel(eventKey);
           }}>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip_dropdown_logLevel">Add/remove log levels filters</Tooltip>}>
-            <NavDropdown title={<span><Glyphicon glyph="stats" /> LogLevel ({logLevel.length})</span>} id="basic-nav-dropdown">
+
+            <NavDropdown title={
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip id="tooltip_dropdown_logLevel">Add/remove log levels filters</Tooltip>}>
+                <span><Glyphicon glyph="stats" /> LogLevel ({logLevel.length})</span>
+              </OverlayTrigger>
+              }
+              id="basic-nav-dropdown">
               {
                 errorLevels.map((errorLevel) =>
                 <MenuItem
@@ -84,7 +89,6 @@ class Toolbar extends Component {
                 )
               }
             </NavDropdown>
-          </OverlayTrigger>
 
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
@@ -92,10 +96,15 @@ class Toolbar extends Component {
             if (eventKey === 9 && !this.state.customMachine) return;
             this.props.changeMachine(eventKey, eventKey === 9 ? this.state.customMachine : null);
           }}>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip_dropdown_machine">Filter by preset machine name.<br/>You can also apply custom filter using RegEx</Tooltip>}>
-            <NavDropdown title={<span><Glyphicon glyph="cd" /> {`Machine: ${this.determineMachineName(machines, machine)}`}</span>} id="basic-nav-dropdown">
+            <NavDropdown
+              title={
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={<Tooltip id="tooltip_dropdown_machine">Filter by preset machine name.<br/>You can also apply custom filter using RegEx</Tooltip>}>
+                  <span><Glyphicon glyph="cd" /> {`Machine: ${this.determineMachineName(machines, machine)}`}</span>
+                </OverlayTrigger>
+              }
+              id="basic-nav-dropdown">
               {machines.map((machine) => <MenuItem key={machine.key} eventKey={machine.key}>{machine.label}</MenuItem>)}
               <MenuItem key={9} eventKey={9}>
                 <FormGroup>
@@ -119,18 +128,23 @@ class Toolbar extends Component {
                 </FormGroup>
               </MenuItem>
             </NavDropdown>
-          </OverlayTrigger>
+
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
             this.props.changeBufferSize(eventKey);
           }}>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip_dropdown_buffer">Select maxium log entries allowed in buffer</Tooltip>}>
-            <NavDropdown title={<span><Glyphicon glyph="list-alt" /> {`Buffer: ${bufferSize}`}</span>} id="basic-nav-dropdown">
+            <NavDropdown
+              title={
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={<Tooltip id="tooltip_dropdown_buffer">Select maxium log entries allowed in buffer</Tooltip>}>
+                <span><Glyphicon glyph="list-alt" /> {`Buffer: ${bufferSize}`}</span>
+                </OverlayTrigger>
+              }
+              id="basic-nav-dropdown">
               {bufferSizes.map((size) => <MenuItem key={size.key} disabled={size.disabled} eventKey={size.key}>{size.label}</MenuItem>)}
             </NavDropdown>
-          </OverlayTrigger>
+
           </Nav>
           <Nav onSelect={(eventKey, evt)=>{
             this.props.toggleMoreSettings();
