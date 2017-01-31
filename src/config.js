@@ -117,7 +117,7 @@ export const initialState = {
     path: '/var/log/tat/toluna.log'//'/TQS/tqs.log'
   },
   filters:[],
-  hideKnown: false
+  hideKnown: true
 
 };
 
